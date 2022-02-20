@@ -29,11 +29,4 @@ public class Player {
     private Integer age;
     @Embedded
     private PdgaData pdgaData;
-
-    public Player(String firstName, String lastName, String email, Integer age) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.age = age;
-    }
 }

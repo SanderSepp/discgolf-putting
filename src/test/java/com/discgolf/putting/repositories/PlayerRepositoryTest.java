@@ -8,6 +8,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.*;
+
+
 @SpringBootTest
 class PlayerRepositoryTest {
     @Autowired
@@ -52,18 +55,6 @@ class PlayerRepositoryTest {
     public void findPlayerByPdgaNumber() {
         List<Player> players = playerRepository.findByPdgaDataPdgaNumber(123322);
         System.out.println(players);
-    }
-
-    @Test
-    public void getPlayerFirstNameByEmailAddress() {
-        String firstName = playerRepository.getPlayerFirstNameByEmailAddress("sepp1300@gmail.com");
-        System.out.println(firstName);
-    }
-
-    @Test
-    public void getPlayerByEmailAddressNative() {
-        Player player = playerRepository.getPlayerByEmailAddressNative("sepp1300@gmail.com");
-        System.out.println(player);
     }
 
     @Test

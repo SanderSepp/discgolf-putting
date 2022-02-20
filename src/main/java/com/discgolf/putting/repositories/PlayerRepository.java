@@ -19,12 +19,6 @@ public interface PlayerRepository extends JpaRepository<Player, Long> {
     @Query("select p from Player p where p.email = ?1")
     Player getPlayerByEmailAddress(String email);
 
-    @Query("select p.firstName from Player p where p.email = ?1")
-    String getPlayerFirstNameByEmailAddress(String email);
-
-    @Query(value = "select * from player p where p.email = ?1", nativeQuery = true)
-    Player getPlayerByEmailAddressNative(String email);
-
     @Query(value = "select * from player p where p.email = :email", nativeQuery = true)
     Player getPlayerByEmailAddressNativeNamedParam(@Param("email") String email);
 

@@ -3,7 +3,6 @@ package com.discgolf.putting.data.entities;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity(name = "PuttingRound")
 @Table(name = "putting_round")
@@ -26,11 +25,7 @@ public class PuttingRound {
     @Column(name = "distance", nullable = false)
     private Double distance;
 
-    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER, optional = false)
+    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "player_id", referencedColumnName = "id")
     private Player player;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "game_id", referencedColumnName = "id")
-    private PuttingGame puttingGame;
 }

@@ -22,11 +22,12 @@ public class PlayerService {
     }
 
     public Player savePlayer(PlayerDto playerDto) {
-        Player player = new Player(
-                playerDto.getFirstName(),
-                playerDto.getLastName(),
-                playerDto.getEmail(),
-                playerDto.getAge());
+        Player player = Player.builder()
+                .firstName(playerDto.getFirstName())
+                .lastName(playerDto.getLastName())
+                .email(playerDto.getEmail())
+                .age(playerDto.getAge())
+                .build();
         return playerRepository.save(player);
     }
 }

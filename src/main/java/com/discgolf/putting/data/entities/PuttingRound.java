@@ -1,5 +1,7 @@
 package com.discgolf.putting.data.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -10,6 +12,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class PuttingRound {
     @Id
     @SequenceGenerator(name = "putting_round_sequence", sequenceName = "putting_round_sequence", allocationSize = 1)
@@ -25,7 +28,12 @@ public class PuttingRound {
     @Column(name = "distance", nullable = false)
     private Double distance;
 
-    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "player_id", referencedColumnName = "id")
     private Player player;
+
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "game_id", nullable = false)
+    private PuttingGame puttingGame;
 }
